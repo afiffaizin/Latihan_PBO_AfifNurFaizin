@@ -46,17 +46,17 @@ class TiketImax extends Tiket
 
     /**
      * Menghitung total harga tiket IMAX.
-     * Tiket IMAX memiliki biaya tambahan 50% dari harga dasar
-     * untuk pengalaman layar besar dan audio premium.
+     * Total Harga = (jumlah_kursi * hargaDasarTiket) + 35000
+     * Dikenakan biaya tambahan teknologi proyeksi layar lebar
+     * IMAX dan audio flat sebesar Rp35.000.
      *
      * @return float Total harga tiket
      */
     public function hitungTotalHarga(): float
     {
-        $biayaTambahanImax = $this->hargaDasarTiket * 0.50; // surcharge 50%
-        $hargaPerTiket     = $this->hargaDasarTiket + $biayaTambahanImax;
+        $biayaTambahanImax = 35000; // biaya flat teknologi IMAX
 
-        return $hargaPerTiket * $this->jumlah_kursi;
+        return ($this->jumlah_kursi * $this->hargaDasarTiket) + $biayaTambahanImax;
     }
 
     /**
@@ -71,7 +71,7 @@ class TiketImax extends Tiket
         $info .= "Jadwal Tayang   : {$this->jadwal_tayang}\n";
         $info .= "Jumlah Kursi    : {$this->jumlah_kursi}\n";
         $info .= "Harga Dasar     : Rp " . number_format($this->hargaDasarTiket, 2, ',', '.') . "\n";
-        $info .= "Surcharge IMAX  : 50%\n";
+        $info .= "Biaya IMAX      : + Rp 35.000 (flat)\n";
         $info .= "Total Harga     : Rp " . number_format($this->hitungTotalHarga(), 2, ',', '.') . "\n";
         $info .= "Kacamata 3D ID  : " . ($this->kecamata3dId ?? 'Tidak tersedia') . "\n";
         $info .= "Efek Gerak/Fitur: " . ($this->efekGerakFitur ?? 'Tidak tersedia') . "\n";

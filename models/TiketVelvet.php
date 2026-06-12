@@ -46,17 +46,15 @@ class TiketVelvet extends Tiket
 
     /**
      * Menghitung total harga tiket Velvet.
-     * Tiket Velvet memiliki biaya tambahan 100% dari harga dasar
-     * untuk pengalaman premium (bantal, selimut, butler service).
+     * Total Harga = (jumlah_kursi * hargaDasarTiket) * 1.50
+     * Dikenakan surcharge/biaya tambahan kelas premium
+     * sebesar 50% dari total harga dasar.
      *
      * @return float Total harga tiket
      */
     public function hitungTotalHarga(): float
     {
-        $biayaTambahanVelvet = $this->hargaDasarTiket * 1.00; // surcharge 100%
-        $hargaPerTiket       = $this->hargaDasarTiket + $biayaTambahanVelvet;
-
-        return $hargaPerTiket * $this->jumlah_kursi;
+        return ($this->jumlah_kursi * $this->hargaDasarTiket) * 1.50;
     }
 
     /**
